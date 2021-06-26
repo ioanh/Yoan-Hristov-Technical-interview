@@ -26,7 +26,7 @@ export function UserPostReducer(state: UserPostState = initialState, action: Use
         case UserPostActionTypes.GET_USERS_SUCCESS:
             return {
                 ...state,
-                users: action.payload,
+                users: [...action.payload],
                 loading: false
             }
         case UserPostActionTypes.GET_USERS_FAILURE:

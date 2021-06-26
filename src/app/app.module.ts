@@ -7,6 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { UserPostReducer } from './store/reducers/user-post.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { UserPostEffects } from './store/effects/user-post.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { UserPostEffects } from './store/effects/user-post.effects';
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({userPost: UserPostReducer}),
-    EffectsModule.forRoot([UserPostEffects])
+    EffectsModule.forRoot([UserPostEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

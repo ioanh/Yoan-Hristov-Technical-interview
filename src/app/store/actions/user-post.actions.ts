@@ -20,3 +20,29 @@ export class GetUsersActionSuccess implements Action {
 
     constructor(public payload: UserItem[]){}
 }
+
+export class GetUsersActionFailure implements Action {
+    readonly type = UserPostActionTypes.GET_POST_FAILURE
+    
+    constructor(public payload: Error) {}
+}
+
+export class GetPostAction implements Action {
+    readonly type = UserPostActionTypes.GET_POST
+
+    constructor(public payload: string) {}
+}
+
+export class GetPostActionSuccess implements Action {
+    readonly type = UserPostActionTypes.GET_POST_SUCCESS
+
+    constructor(public payload: PostItem) {}
+}
+
+export class GetPostActionFailure implements Action {
+    readonly type = UserPostActionTypes.GET_POST_FAILURE
+
+    constructor(public payload: Error) {}
+}
+
+export type  UserPostAction = GetUsersAction | GetUsersActionSuccess | GetUsersActionFailure | GetPostAction | GetPostActionSuccess | GetPostActionFailure

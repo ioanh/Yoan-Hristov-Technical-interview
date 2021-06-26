@@ -22,7 +22,7 @@ export class GetUsersActionSuccess implements Action {
 }
 
 export class GetUsersActionFailure implements Action {
-    readonly type = UserPostActionTypes.GET_POST_FAILURE
+    readonly type = UserPostActionTypes.GET_USERS_FAILURE
     
     constructor(public payload: Error) {}
 }

@@ -15,7 +15,7 @@ export class UserPostService {
         return this.http.get<Array<UserItem>>('http://jsonplaceholder.typicode.com/users')
     }
 
-    getPost(id){
+    getPost(id: string){
         return this.http.get<PostItem>(`https://jsonplaceholder.typicode.com/posts/${id}`)
     }
 }

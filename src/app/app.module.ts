@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { UserPostReducer } from './store/reducers/user-post.reducer';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({userPost: UserPostReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

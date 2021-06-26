@@ -1,10 +1,22 @@
 import { Component } from '@angular/core';
+import { UserPostState } from './store/reducers/user-post.reducer';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { UserItem } from './store/models/user.model';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'Yoan-Hristov-Technical-interview';
+export class AppComponent  implements OnInit{
+
+  users$: Observable<Array<UserItem>>;
+
+  ngOnInit(){
+    this.users$ = this.store.select( store => store.users)
+  }
+
+  constructor(private store: Store<UserPostState>) {}
 }

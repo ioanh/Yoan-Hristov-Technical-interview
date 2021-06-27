@@ -1,33 +1,68 @@
-<li *ngFor="let user of users$ | async">{{user.id}}</li>
-<h1>Hello</h1>
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div *ngIf="usersLoading$ | async; else elseBlock1">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>        
+      </div>
+      <ng-template #elseBlock1>
+        <div class="card" *ngFor="let user of users$ | async">
+          <form>
+            <label>id</label>
+            <input class="form-control" placeholder="ID" value={{user.id}} disabled>
+            <label>name</label>
+            <input class="form-control" placeholder="name" value={{user.name}} >
+            <label>username</label>
+            <input class="form-control" placeholder="username" value={{user.username}} >
+            <label>email</label>
+            <input class="form-control" placeholder="email" value={{user.email}} >
+            <label>address street</label>
+            <input class="form-control" placeholder="address street" value={{user.address.street}} >
+            <label>address suite</label>
+            <input class="form-control" placeholder="address suite" value={{user.address.suite}} >
+            <label>city</label>
+            <input class="form-control" placeholder="city" value={{user.address.city}} >
+            <label>zipcode</label>
+            <input class="form-control" placeholder="zipcode" value={{user.address.zipcode}} disabled>
+            <label>lat</label>
+            <input class="form-control" placeholder="lat" value={{user.address.geo.lat}} disabled>
+            <label>lng</label>
+            <input class="form-control" placeholder="lng" value={{user.address.geo.lng}} disabled>
+            <label>phone</label>
+            <input class="form-control" placeholder="phone" value={{user.phone}} >
+            <label>website</label>
+            <input class="form-control" placeholder="website" value={{user.website}} >
+            <label>company name</label>
+            <input class="form-control" placeholder="company name" value={{user.company.name}} disabled>
+            <label>company catch phrase</label>
+            <input class="form-control" placeholder="company catch prase" value={{user.company.catchPhrase}} disabled>
+            <label>company bs</label>
+            <input class="form-control" placeholder="company bs" value={{user.company.bs}} disabled>
+            <button (click)="getPost(user.id)" type="button" class="btn btn-success">Get Post</button>
+          </form>
+        </div>
+      </ng-template>
+    </div>
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="col-sm-6">
+      <div *ngIf="postLoading$ | async; else elseBlock">
+        <div class="spinner-border fixed" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <ng-template #elseBlock>
+        <div class="card fixed" *ngFor="let item of post$ | async">
+          <div class="card-body">
+            <p>user id: {{item.userId}}</p>
+            <p>id: {{item.id}}</p>
+            <p>title: {{item.title}}</p>
+            <p>body: {{item.body}}</p>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    
+  </div>
+</div>

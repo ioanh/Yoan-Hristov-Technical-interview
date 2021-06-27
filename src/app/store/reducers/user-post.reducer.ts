@@ -4,15 +4,17 @@ import { UserItem } from "../models/user.model";
 
 export interface UserPostState {
     users: UserItem[],
-    post: PostItem,
-    loading: boolean,
+    post: PostItem[],
+    usersLoading: boolean,
+    postLoading: boolean,
     error: Error
 }
 
 const initialState: UserPostState = {
     users: [],
-    post : undefined,
-    loading: false,
+    post : [],
+    usersLoading: false,
+    postLoading: false,
     error: undefined
 }
 
@@ -21,35 +23,39 @@ export function UserPostReducer(state: UserPostState = initialState, action: Use
         case UserPostActionTypes.GET_USERS:
             return {
                 ...state, 
-                loading: true
+                usersLoading: true
             }
         case UserPostActionTypes.GET_USERS_SUCCESS:
+            console.log(`${action.type} was succesfull!`)
             return {
                 ...state,
                 users: [...action.payload],
-                loading: false
+                usersLoading: false
             }
         case UserPostActionTypes.GET_USERS_FAILURE:
+            console.log(`${action.type} failed`)
             return {
                 ...state,
-                loading: false,
+                usersLoading: false,
                 error: action.payload
             }
         case UserPostActionTypes.GET_POST:
             return{
                 ...state,
-                loading: true
+                postLoading: true
             }
         case UserPostActionTypes.GET_POST_SUCCESS:
+            console.log(`${action.type} was succesfull!`)
             return{
                 ...state,
-                post: action.payload,
-                loading: false
+                post: [action.payload],
+                postLoading: false
             }
         case UserPostActionTypes.GET_POST_FAILURE:
+            console.log(`${action.type} failed`)
             return{
                 ...state,
-                loading: false,
+                postLoading: false,
                 error: action.payload
             }
     }

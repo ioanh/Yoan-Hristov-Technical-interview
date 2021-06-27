@@ -13,9 +13,15 @@ export class UserPostService {
 
     getUsers(){
         return this.http.get<Array<UserItem>>('http://jsonplaceholder.typicode.com/users')
+        .pipe(
+            delay(1000)
+        )
     }
 
     getPost(id: string){
         return this.http.get<PostItem>(`https://jsonplaceholder.typicode.com/posts/${id}`)
+        .pipe(
+            delay(1000)
+        )
     }
 }

@@ -12,4 +12,5 @@ body{
     position: fixed;
     resize: both;
     overflow: auto;
+    margin-right: 50px;
 }
